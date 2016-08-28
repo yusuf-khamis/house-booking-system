@@ -1,0 +1,131 @@
+<section>
+    <h1 id="fullname">Welcome, <span id="header-name">{{info.first_name + " " + info.surname}}</span></h1>
+    <div class="well well-lg">
+        <div id="tenant" class="dissappear">
+            <p id="housing_details">Your current house details</p>
+            <p>You are currently allocated <span class="detail">{{info.location}}</span> house number <span class="detail">{{info.house_number}}</span></p>
+            <p>Acceptance date was <span class="detail">{{info.since_date}}</span></p>
+        </div>
+        <div id="non-tenant" class="dissappear">
+            <p id="non-resident"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;You are currently not a resident</p>
+        </div>
+        <div id="requesting" class="dissappear">
+            <p id="non-resident"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Your request for house number
+                <span class="detail">{{info.house_number}}</span> at <span class="detail">{{info.location}}</span>
+                since <span class="detail">{{info.requested_date}}</span> at
+                <span class="detail">{{info.requested_time}}</span>
+                is still pending, please be patient.
+            </p>
+        </div>
+        <div id="changing" class="dissappear">
+            <p id="non-resident"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;&nbsp;Your request to change from house number
+                <span class="detail">{{info.previous}}</span> to <span class="detail">{{info.current}}</span> since 
+                <span class="detail">{{info.requested_date}}</span> at <span class="detail">{{info.requested_time}}</span>
+                is still pending, please be patient.
+            </p>
+        </div>
+    </div>
+    <div class="navigation">
+        <button class="btn btn-lg btn-default" id="edit-info">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;<span id="edit">Edit my information</span>
+        </button>
+        <button class="btn btn-lg btn-default" id="surrender" data-target="#confirm-exit" data-toggle="modal">
+            <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Surrender a house
+        </button>
+        <button class="btn btn-lg btn-default" id="book">
+            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            <span id="request">Proceed to request a house</span>&nbsp;&nbsp;
+        </button>
+    </div>
+    
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">My personal information</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <p class="col-sm-2">Name:</p>
+                <p class="col-sm-3 field">{{info.first_name + " " + info.second_name + " " + info.surname}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="names" class="form-control" value="{{info.first_name + ' ' + info.second_name + ' ' + info.surname}}" /></div>
+                <p class="col-sm-offset-1 col-sm-2">Box number:</p>
+                <p class="col-sm-1 field">{{info.box_number}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="box" class="form-control" value="{{info.box_number}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-2">Gender:</p>
+                <p class="col-sm-3 field">{{info.gender}}</p>
+                <div class="col-sm-3 edit-input">
+                    <select class="form-control" name="gender">
+                        <option value="Male">Male</option>
+                        <option value="Female" ng-selected="info.gender == 'Female'">Female</option>
+                    </select>
+                </div>
+                <p class="col-sm-offset-1 col-sm-2">City:</p>
+                <p class="col-sm-1 field">{{info.box_city}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="city" class="form-control" value="{{info.box_city}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-2">Marital status:</p>
+                <p class="col-sm-3 field">{{info.marital_status}}</p>
+                <div class="col-sm-3 edit-input">
+                    <select class="form-control" name="marital">
+                        <option value="Married">Married</option>
+                        <option value="Single" ng-selected="info.marital_status == 'Single'">Single</option>
+                    </select>
+                </div>
+                <p class="col-sm-offset-1 col-sm-2">Postal address:</p>
+                <p class="col-sm-1 field">{{info.postal_address}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="postal" class="form-control" value="{{info.postal_address}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-2">ID Number:</p>
+                <p class="col-sm-3 field">{{info.id_number}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="id" class="form-control" value="{{info.id_number}}" /></div>
+                <p class="col-sm-offset-1 col-sm-2">Phone number:</p>
+                <p class="col-sm-2 field">{{info.phone_number}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="phone" class="form-control" value="{{info.phone_number}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-offset-6 col-sm-2">Alternate Phone number:</p>
+                <p class="col-sm-2 field">{{info.alternate_number}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="alternate" class="form-control" value="{{info.alternate_number}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-offset-6 col-sm-2">Email address:</p>
+                <p class="col-sm-3 field">{{info.email_address}}</p>
+                <div class="col-sm-3 edit-input"><input type="text" name="email" class="form-control" value="{{info.email_address}}" /></div>
+            </div>
+            <div class="row">
+                <p class="col-sm-2" id="pwd">Change password</p>
+                <div class="col-sm-3 edit-input"><input type="password" name="pwd" class="form-control" placeholder="(old password)" /></div>
+            </div>
+            <div class="row">
+                <h5 class="col-sm-10">
+                    NB: In edit mode, click on the detail to edit info (provide 3 names separated with spaces in first, second and surname order).
+                    Press Alt+Enter to commit changes.
+                </h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--start of confirmation dialog-->
+
+<div class="modal modal-default fade" role="dialog" id="confirm-exit" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Confirm surrender</h3>
+            </div>
+            <div class="modal-body text-center">
+                <h4>Are you sure you want to send this request?</h4>
+                <div class="btn-group" role="group" aria-label="...">
+                    <button class="btn btn-default">Yes, I am sure</button>
+                    <button class="btn btn-danger" data-dismiss="modal">No, go back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end of confirmation dialog-->

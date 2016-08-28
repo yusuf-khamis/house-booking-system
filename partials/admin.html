@@ -1,0 +1,122 @@
+<section>
+    <h1>Admin Panel</h1>
+    <div class="alert alert-warning" id="admin-notifications">
+        <div id="users" ng-class="{active: display == 'users'}" ng-click="display='users'">
+            <div class="symbol"><span class="glyphicon glyphicon-user"></span></div>
+            <div class="number dissappear">{{userslength}}</div>
+        </div>
+        <div id="requests" ng-class="{active: display == 'requests'}" ng-click="display='requests'">
+            <div class="symbol"><span class="glyphicon glyphicon-globe"></span></div>
+            <div class="number" ng-hide="requestslength == 0">{{requestslength}}</div>
+        </div>
+        <div id="occupancy" ng-class="{active: display == 'occupancy'}" ng-click="display='occupancy'">
+            <div class="symbol"><span class="glyphicon glyphicon-home"></span></div>
+            <div class="number dissappear">{{houseslength}}</div>
+        </div>
+    </div>
+    <div id="admin-content">
+        <div ng-switch="display">
+            <div ng-switch-default="users" id="users-page">
+                <div id="search-container">
+                    <input type="text" id="search" ng-model="query" placeholder="search users" />
+                    <span id="search-icon" class="glyphicon glyphicon-search"></span>
+                </div>
+                <h3>All users</h3>
+                <div id="users-list" class="col-sm-7">
+                    <div class="alert alert-info users-display" ng-repeat="data in users | filter: query">
+                        <h4 class="user-name" id="{{data.emp_id}}">{{data.first_name}} {{data.second_name}} {{data.surname}}</h4>
+                        <button class="btn btn-default left-button block" id="{{data.emp_id}}">{{data.availability == 'available' ? 'Block' : 'Unblock'}} user</button>
+                        <button class="btn btn-default left-button reset" id="{{data.emp_id}}">Reset password</button>
+                    </div>
+                </div>
+                <div id="users-details" class="col-sm-4 col-sm-offset-1">
+                    <p id="details-title">Click on a user to view more info here</p>
+                    <div class="separator">
+                        <p class="col-sm-6">Emp ID:</p><p class="col-sm-6 more-details" id="emp_id"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Status:</p><p class="col-sm-6 more-details" id="marital_status"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Gender:</p><p class="col-sm-6 more-details" id="gender"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">ID:</p><p class="col-sm-6 more-details" id="id_number"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Phone 1:</p><p class="col-sm-6 more-details" id="phone_number"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Phone 2:</p><p class="col-sm-6 more-details" id="alternate_number"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">E-mail:</p><p class="col-sm-6 more-details" id="email_address"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Box number:</p><p class="col-sm-6 more-details" id="box_number"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">Postal address:</p><p class="col-sm-6 more-details" id="postal_address"></p>
+                    </div>
+                    <div class="separator">
+                        <p class="col-sm-6">City:</p><p class="col-sm-6 more-details" id="box_city"></p>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="emails" id="emails-page">
+                <h3>{{mailslength == 0 ? 'No new e-mails' : 'E-mails'}}</h3>
+                <div class="alert alert-info mails-display {{data.read_status == 'pending' ? 'unread-mails' : 'read-mails'}}" ng-repeat="data in mails" ng-hide="mailslength == 0">
+                    <p class="subject">{{data.subject}}</p>
+                    <button class="btn btn-link view-more" id="{{data.id}}">Read mail</button>
+                    <p class="content dissappear" id="{{data.read_status}}">{{data.content}}</p>
+                </div>
+            </div>
+            <div ng-switch-when="requests" id="requests-page">
+                <h3>{{requestslength == 0 ? 'No new requests' : 'Pending requests'}}</h3>
+                <div class="alert alert-info requests-display" ng-repeat="data in requests" ng-hide="requestslength == 0 || data.type != 'changing'" id="{{data.house_number}}">
+                    {{data.first_name}} {{data.second_name}} {{data.surname}} requested to change from {{data.previous}} to {{data.house_number}}
+                    <button class="btn btn-danger left-button decline" id="{{data.emp_id}}">Decline&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-success left-button approve" id="{{data.emp_id}}">Approve&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                </div>
+                <div class="alert alert-info requests-display" ng-repeat="data in requests" ng-hide="requestslength == 0 || data.type != 'left'" id="{{data.house_number}}">
+                    {{data.first_name}} {{data.second_name}} {{data.surname}} left {{data.house_number}}
+                    <button class="btn btn-default left-button ok" id="{{data.emp_id}}">OK&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                </div>
+                <div class="alert alert-info requests-display" ng-repeat="data in requests" ng-hide="requestslength == 0 || data.type != 'new'" id="{{data.house_number}}">
+                    {{data.first_name}} {{data.second_name}} {{data.surname}} requested house number {{data.house_number}}
+                    <button class="btn btn-danger left-button decline" id="{{data.emp_id}}">Decline&nbsp;&nbsp;<span class="glyphicon glyphicon-remove"></span></button>
+                    <button class="btn btn-success left-button approve" id="{{data.emp_id}}">Approve&nbsp;&nbsp;<span class="glyphicon glyphicon-ok"></span></button>
+                </div>
+            </div>
+            <div ng-switch-when="occupancy" id="occupancy-page">
+                <h3>Houses</h3>
+                <div id="occupancy-table-header">
+                    <table class="table table-hover table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>House number</th>
+                                <th>Location</th>
+                                <th>Book status</th>
+                                <th>Requested/Occupied since</th>
+                                <th>Requested/Occupied by</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="occupancy-table-data" class="mCustomScrollbar" data-mcs-theme="dark">
+                    <table class="table table-hover table-striped table-bordered">
+                        <tbody>
+                            <tr ng-repeat="data in houses">
+                                <td>{{data.house_number}}</td>
+                                <td>{{data.location}}</td>
+                                <td>{{data.book_status}}</td>
+                                <td>{{!data.since_date ? !data.requested_date ? 'N/A' : data.requested_date : data.since_date}}</td>
+                                <td>{{!data.first_name ? 'N/A' : data.first_name + ' ' + data.second_name + ' ' + data.surname}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

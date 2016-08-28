@@ -1,0 +1,124 @@
+<section>
+    <div class=" alert alert-info top-part">
+        <h2>Select a house &nbsp;<small>select to filter and order below</small></h2>
+        <hr />
+        <div class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-3">
+                    <select class="form-control" ng-model="houseOrder">
+                        <option value="book_status">Order by vacancy</option>
+                        <option value="location" selected>Order by location</option>
+                    </select>
+                </div>
+                <div class="col-sm-3">
+                    <label>
+                        <input type="radio" ng-model="direction" name="direction" class="form-control" checked />ascending
+                    </label>
+                    <label>
+                        <input type="radio" ng-model="direction" name="direction" class="form-control" value="reverse" />descending
+                    </label>
+                </div>
+                <div class="col-sm-5">
+                    <label class="forCheck">
+                        <input type="checkbox" class="check" ng-click="includeLocation('Kiembeni')" />
+                        <i class="glyphicon glyphicon-check houseChecked"></i>
+                        <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                        Kiembeni
+                    </label>
+                    <label class="forCheck">
+                        <input type="checkbox" class="check" ng-click="includeLocation('Pandya')" />
+                        <i class="glyphicon glyphicon-check houseChecked"></i>
+                        <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                        Pandya
+                    </label>
+                    <label class="forCheck">
+                        <input type="checkbox" class="check" ng-click="includeLocation('Mbaraki')" />
+                        <i class="glyphicon glyphicon-check houseChecked"></i>
+                        <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                        Mbaraki
+                    </label>
+                    <label class="forCheck">
+                        <input type="checkbox" class="check" ng-click="includeLocation('Ganjoni')" />
+                        <i class="glyphicon glyphicon-check houseChecked"></i>
+                        <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                        Ganjoni
+                    </label>
+                    <label class="forCheck">
+                        <input type="checkbox" class="check" ng-click="includeLocation('Nyali')" />
+                        <i class="glyphicon glyphicon-check houseChecked"></i>
+                        <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                        Nyali
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sidebar">
+        <button class="btn btn-warning btn-lg sidebtn"><span class="glyphicon glyphicon-chevron-left pull-left"></span>&nbsp;Cancel</button>
+    </div>
+    <form id="form" method="post">
+        <div class="tableHeaderSection">
+            <table class="table table-hover table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>House no.</th>
+                        <th>Location</th>
+                        <th>Availability</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="tableSection">
+            <table class="table table-hover table-striped table-bordered">
+                <tbody>
+                    <tr ng-repeat="item in houses | filter:locationFilter | orderBy:houseOrder:direction">
+                        <td>{{item.house_number}}</td>
+                        <td>{{item.location}}</td>
+                        <td>{{item.book_status}}</td>
+                        <td><input type="radio" class="form-control" value="{{item.house_number}}" name="select" ng-disabled="item.book_status == 'Booked' || item.book_status == 'Requested'"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="submitArea">
+            <input type="submit" value="Submit" class="btn btn-success btn-lg col-sm-3">
+            <div class="alert alert-warning col-sm-offset-1 col-sm-8" id="alertInHouses">
+                <span class="glyphicon glyphicon-alert">&nbsp;</span>
+                <span id="textInAlert">Please make sure you select first before submitting</span>
+            </div>
+        </div>
+    </form>
+</section>
+
+<!--start of confirmation dialog-->
+
+<div class="modal modal-default fade" role="dialog" id="confirm" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">House request</h3>
+            </div>
+            <div class="modal-body">
+                <p>This request will be queued for approval by the management responsible, on approval you must therefore adhere to rules and regulations 
+                    that have been provided to you in any form. You will therefore have to wait for a maximum of five working days for your request to be 
+                     processed and you will be notified the next time you log in.
+                </p>
+                <label id="conditions">
+                    <input type="checkbox" class="check" onchange="$('.proceed').attr('disabled', !$(this).is(':checked'))" />
+                    <i class="glyphicon glyphicon-check houseChecked"></i>
+                    <i class="glyphicon glyphicon-unchecked houseUnchecked"></i>
+                    I accept the terms put forward
+                </label>
+                <button class="btn btn-default proceed" disabled="disabled">Proceed</button>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-info col-sm-9" id="confirm-alert"></div>
+                <button class="btn btn-link btn-lg" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end of confirmation dialog-->
