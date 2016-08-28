@@ -1,0 +1,353 @@
+.navbar-brand {
+    padding: 2px 10px;
+}
+#featured .item {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    width: 100%;
+}
+body {
+    padding-top: 0px;
+}
+h5 {
+    font-weight: bold;
+    font-size: 15px;
+}
+#alert {
+    display: none;
+}
+.alert {
+    text-align: left;
+}
+.count {
+    margin: 5px;
+    float: right;
+    clear: both;
+}
+
+/* css for the ng-view div tag */
+
+.mainView {
+    width: 1200px;
+    margin: 50px auto 0px auto;
+}
+
+/* css for the houses view partial */
+
+th, td {
+    text-align: center;
+    width: 225px;
+}
+select {
+    width: 150px;
+    border-width: 1px;
+    border-color: #c0a16b;
+    border-radius: 5px;
+    margin-right: 50px;
+}
+.check, .houseChecked {
+    display: none;
+}
+.check:checked ~ .houseChecked {
+    display: inline-block;
+}
+.check:checked ~ .houseUnchecked {
+    display: none;
+}
+.forCheck {
+    cursor: pointer;
+    margin-top: 8px;
+}
+#orderBy {
+    font-weight: bold;
+    margin-right: 10px;
+}
+label {
+    margin-right: 15px;
+}
+input[type=radio] {
+    display: inline;
+    width: auto;
+    vertical-align: middle;
+    margin: 0px 10px 0px 0px;
+}
+input[type=checkbox] {
+    margin-right: 5px;
+}
+.checkbox-filters {
+    margin: 15px 0px 0px 15px;
+    height: 34px;
+    border-radius: 1px 1px 10px 10px;
+}
+.top-part{
+    margin: 20px auto 0px auto;
+    border-radius: 10px;
+    height: 120px;
+}
+#form {
+    width: 900px;
+    margin: 15px;
+    float: right;
+}
+.tableHeaderSection {
+    width: 885px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+.tableSection {
+    margin-top: 0px;
+    padding-top: 0px;
+    width: 900px;
+    height: 310px;
+    overflow-y: scroll;
+}
+.submitArea {
+    width: 900px;
+    margin: 25px auto;
+}
+h2 {
+    margin: 0px;
+}
+hr {
+    width: 95%;
+    margin: 10px auto 5px auto;
+    padding: 0px;
+}
+#sidebar {
+    float: left;
+    width: 270px;
+}
+.sidebtn {
+    margin: 15px 0px;
+    width: 100%;
+}
+#confirm-alert {
+    display: none;
+}
+
+/* css for the register partial */
+
+#fields {
+    
+}
+#fields label {
+    color: #666;
+}
+
+/* css for the info partial */
+
+#fullname {
+    margin-bottom: 30px;
+}
+.navigation {
+    margin: 40px 20px;
+}
+.panel {
+    
+}
+.navigation button {
+    margin: 0px 10px;
+}
+.well p {
+    font-size: 16px;
+}
+#housing_details {
+    font-size: 18px;
+    font-weight: bold;
+}
+.detail {
+    color: #777;
+    font-weight: bolder;
+}
+#conditions {
+    cursor: pointer;
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: normal;
+}
+#non-resident {
+    color: #843534;
+    font-size: 18px;
+}
+.row {
+    clear: both;
+}
+#complain {
+    margin: 0px 20px;
+}
+.modal-body h4 {
+    margin: 0 0 30px 0;
+}
+.edit-input {
+    display: none;
+}
+#pwd {
+    font-size: 15px;
+    color: #44c;
+    cursor: pointer;
+}
+#feedback {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    padding: 14px;
+    text-align: center;
+    font-size: 15px;
+    background-color: rgba(200, 200, 200, 0.8);
+    top: 50px;
+    font-weight: bold;
+    color: #101010;
+}
+
+/*css for the admin panel*/
+
+#mails, #requests, #users, #occupancy {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    float: right;
+    right: 200px;
+    cursor: pointer;
+    padding: 5px;
+    top: 0;
+    transition: top 0.3s;
+}
+#mails:hover, #requests:hover, #users:hover, #occupancy:hover {
+    top: -3px;
+}
+.symbol {
+    font-size: 25px;
+    color: #666;
+    position: absolute;
+    top: 3;
+}
+.number {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background-color: #f00;
+    color: #fff;
+    left: 20px;
+    z-index: 10;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    vertical-align: central;
+    padding-top: 1px;
+}
+#admin-notifications {
+    padding: 5px;
+    height: 50px;
+}
+.left-button {
+    float: right;
+    margin: 0px 10px;
+}
+.requests-display {
+    height: 65px;
+    font-size: 18px;
+}
+.users-display {
+    height: 60px;
+    background-color: #efefef;
+}
+.mails-display {
+    margin: 1px;
+    border-radius: 5px;
+    color: #000;
+    border: 2px solid #d5d5d5;
+    height: 60px;
+}
+.subject {
+    font-size: 16px;
+    font-weight: bold;
+    float: left;
+}
+.content {
+    clear: both;
+}
+.view-more {
+    float: right;
+}
+.unread-mails {
+    background-color: #ececec;
+    border-bottom: 2px solid #ccc;
+}
+.read-mails {
+    background-color: #fdfdfd;
+    border-bottom: 1px solid #efefef;
+}
+#occupancy-table-header {
+    width: 1187px;
+}
+#occupancy-table-data {
+    height: 350px;
+    overflow-y: auto;
+}
+.user-name {
+    float: left;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+}
+#users-details {
+    height: 350px;
+    border: 1px #999 solid;
+    border-radius: 10px;
+}
+#details-title {
+    font-size: 20px;
+}
+#users-list {
+    height: 350px;
+    overflow-y: auto;
+}
+.separator {
+    clear: both;
+}
+#search-container {
+    position: relative;
+    margin-right: 30px;
+    border-radius: 20px;
+    background-color: #fff;
+    border: #666 solid 2px;
+    width: 205px;
+    height: 30px;
+    float: right;
+    
+}
+#search {
+    border-width: 0px;
+    border-radius: 20px;
+    left:5px;
+    top: 1px;
+    position: absolute;
+    font-size: 15px;
+    color: #777;
+}
+#search-icon {
+    position: absolute;
+    font-size: 17px;
+    color: #666;
+    top: 4px;
+    left: 178px;
+}
+
+/* css for javascript */
+
+.glow-error {
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+}
+.edit-error:focus {
+    box-shadow: 0 0 10px rgb(255, 0, 0);
+    border: 1px #f00 solid;
+}
+.dissappear {
+    display: none;
+}
+.hand-cursor {
+    cursor: pointer;
+}
